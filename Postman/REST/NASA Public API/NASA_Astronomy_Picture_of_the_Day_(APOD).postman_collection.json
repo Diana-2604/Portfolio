@@ -1,0 +1,358 @@
+{
+	"info": {
+		"_postman_id": "345abaa8-fbd9-41b9-b200-5aa9677c01c3",
+		"name": "NASA - Astronomy Picture of the Day (APOD)",
+		"description": "One of the most popular websites at NASA is the Astronomy Picture of the Day. In fact, this website is one of the most popular websites across all federal agencies. It has the popular appeal of a Justin Bieber video. This endpoint structures the APOD imagery and associated metadata so that it can be repurposed for other applications. In addition, if the concept_tags parameter is set to True, then keywords derived from the image explanation are returned. These keywords could be used as auto-generated hashtags for twitter or instagram feeds; but generally help with discoverability of relevant imagery. ",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "24309717"
+	},
+	"item": [
+		{
+			"name": "Today",
+			"event": [
+				{
+					"listen": "prerequest",
+					"script": {
+						"exec": [
+							"var moment = require('moment');",
+							"",
+							"pm.environment.set('currentdate', moment().format((\"YYYY-MM-DD\")));"
+						],
+						"type": "text/javascript"
+					}
+				},
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"// Preview the picture of the day in Visualize tab",
+							"let template = `",
+							"<img src=\"{{res.url}}\">",
+							"`",
+							"",
+							"pm.visualizer.set(template, { ",
+							"    res: pm.response.json()",
+							"})"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "https://api.nasa.gov/planetary/apod?api_key={{api_key}}&date={{current_date}}&hd=true",
+					"protocol": "https",
+					"host": [
+						"api",
+						"nasa",
+						"gov"
+					],
+					"path": [
+						"planetary",
+						"apod"
+					],
+					"query": [
+						{
+							"key": "api_key",
+							"value": "{{api_key}}"
+						},
+						{
+							"key": "date",
+							"value": "{{current_date}}"
+						},
+						{
+							"key": "hd",
+							"value": "true"
+						}
+					]
+				},
+				"description": "This pulls a photo of the day from NASA, showing a single photo from their collection of space related photos."
+			},
+			"response": [
+				{
+					"name": "Today",
+					"originalRequest": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "https://api.nasa.gov/planetary/apod?api_key={{api_key}}&date=2019-09-13&hd=true",
+							"protocol": "https",
+							"host": [
+								"api",
+								"nasa",
+								"gov"
+							],
+							"path": [
+								"planetary",
+								"apod"
+							],
+							"query": [
+								{
+									"key": "api_key",
+									"value": "{{api_key}}"
+								},
+								{
+									"key": "date",
+									"value": "2019-09-13"
+								},
+								{
+									"key": "hd",
+									"value": "true"
+								}
+							]
+						}
+					},
+					"status": "OK",
+					"code": 200,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "Server",
+							"value": "openresty"
+						},
+						{
+							"key": "Date",
+							"value": "Sun, 15 Sep 2019 23:19:31 GMT"
+						},
+						{
+							"key": "Content-Type",
+							"value": "application/json"
+						},
+						{
+							"key": "Transfer-Encoding",
+							"value": "chunked"
+						},
+						{
+							"key": "Connection",
+							"value": "keep-alive"
+						},
+						{
+							"key": "Vary",
+							"value": "Accept-Encoding"
+						},
+						{
+							"key": "X-RateLimit-Limit",
+							"value": "1000"
+						},
+						{
+							"key": "X-RateLimit-Remaining",
+							"value": "997"
+						},
+						{
+							"key": "Via",
+							"value": "1.1 vegur, http/1.1 api-umbrella (ApacheTrafficServer [cMsSf ])"
+						},
+						{
+							"key": "Age",
+							"value": "0"
+						},
+						{
+							"key": "X-Cache",
+							"value": "MISS"
+						},
+						{
+							"key": "Access-Control-Allow-Origin",
+							"value": "*"
+						},
+						{
+							"key": "Strict-Transport-Security",
+							"value": "max-age=31536000; preload"
+						},
+						{
+							"key": "Content-Encoding",
+							"value": "gzip"
+						}
+					],
+					"cookie": [],
+					"body": "{\n    \"copyright\": \"Jean-Francois\\nGraffand\",\n    \"date\": \"2019-09-13\",\n    \"explanation\": \"Famed in festival, story, and song the best known full moon is the Harvest Moon. For northern hemisphere dwellers that's a traditional name of the full moon nearest the September equinox. In most North America time zones this year's Harvest Moon will officially rise on Friday, September 13. In fact the same Harvest Moon will rise on September 14 for much of the planet though. Of course the Moon will look almost full in the surrounding days. Regardless of your time zone the Harvest Moon, like any other full moon, will rise just opposite the setting Sun. Near the horizon, the Moon Illusion might make it appear bigger and brighter to you but this Harvest Moon will be near lunar apogee. That's the farthest point in its orbit, making it the most distant, and so the smallest, full moon of the year. On August 15 a wheat field harvested in south central France made this a harvest moon scene too, the full moon shining on with beautiful iridescent clouds at sunset.\",\n    \"hdurl\": \"https://apod.nasa.gov/apod/image/1909/HarvestmoonGraffand.jpg\",\n    \"media_type\": \"image\",\n    \"service_version\": \"v1\",\n    \"title\": \"A Harvest Moon\",\n    \"url\": \"https://apod.nasa.gov/apod/image/1909/HarvestmoonGraffand.jpg\"\n}"
+				}
+			]
+		},
+		{
+			"name": "Given day",
+			"event": [
+				{
+					"listen": "prerequest",
+					"script": {
+						"exec": [
+							"var moment = require('moment');",
+							"",
+							"pm.environment.set('currentdate', moment().format((\"YYYY-MM-DD\")));"
+						],
+						"type": "text/javascript"
+					}
+				},
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"// Preview the picture of the day in Visualize tab",
+							"let template = `",
+							"<img src=\"{{res.url}}\">",
+							"`",
+							"",
+							"pm.visualizer.set(template, { ",
+							"    res: pm.response.json()",
+							"})"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "https://api.nasa.gov/planetary/apod?api_key={{api_key}}&date=2023-02-06&hd=true",
+					"protocol": "https",
+					"host": [
+						"api",
+						"nasa",
+						"gov"
+					],
+					"path": [
+						"planetary",
+						"apod"
+					],
+					"query": [
+						{
+							"key": "api_key",
+							"value": "{{api_key}}"
+						},
+						{
+							"key": "date",
+							"value": "2023-02-06",
+							"description": "My fav"
+						},
+						{
+							"key": "hd",
+							"value": "true"
+						}
+					]
+				},
+				"description": "This pulls a photo of the day from NASA, showing a single photo from their collection of space related photos."
+			},
+			"response": [
+				{
+					"name": "Today",
+					"originalRequest": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "https://api.nasa.gov/planetary/apod?api_key={{api_key}}&date=2019-09-13&hd=true",
+							"protocol": "https",
+							"host": [
+								"api",
+								"nasa",
+								"gov"
+							],
+							"path": [
+								"planetary",
+								"apod"
+							],
+							"query": [
+								{
+									"key": "api_key",
+									"value": "{{api_key}}"
+								},
+								{
+									"key": "date",
+									"value": "2019-09-13"
+								},
+								{
+									"key": "hd",
+									"value": "true"
+								}
+							]
+						}
+					},
+					"status": "OK",
+					"code": 200,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "Server",
+							"value": "openresty"
+						},
+						{
+							"key": "Date",
+							"value": "Sun, 15 Sep 2019 23:19:31 GMT"
+						},
+						{
+							"key": "Content-Type",
+							"value": "application/json"
+						},
+						{
+							"key": "Transfer-Encoding",
+							"value": "chunked"
+						},
+						{
+							"key": "Connection",
+							"value": "keep-alive"
+						},
+						{
+							"key": "Vary",
+							"value": "Accept-Encoding"
+						},
+						{
+							"key": "X-RateLimit-Limit",
+							"value": "1000"
+						},
+						{
+							"key": "X-RateLimit-Remaining",
+							"value": "997"
+						},
+						{
+							"key": "Via",
+							"value": "1.1 vegur, http/1.1 api-umbrella (ApacheTrafficServer [cMsSf ])"
+						},
+						{
+							"key": "Age",
+							"value": "0"
+						},
+						{
+							"key": "X-Cache",
+							"value": "MISS"
+						},
+						{
+							"key": "Access-Control-Allow-Origin",
+							"value": "*"
+						},
+						{
+							"key": "Strict-Transport-Security",
+							"value": "max-age=31536000; preload"
+						},
+						{
+							"key": "Content-Encoding",
+							"value": "gzip"
+						}
+					],
+					"cookie": [],
+					"body": "{\n    \"copyright\": \"Jean-Francois\\nGraffand\",\n    \"date\": \"2019-09-13\",\n    \"explanation\": \"Famed in festival, story, and song the best known full moon is the Harvest Moon. For northern hemisphere dwellers that's a traditional name of the full moon nearest the September equinox. In most North America time zones this year's Harvest Moon will officially rise on Friday, September 13. In fact the same Harvest Moon will rise on September 14 for much of the planet though. Of course the Moon will look almost full in the surrounding days. Regardless of your time zone the Harvest Moon, like any other full moon, will rise just opposite the setting Sun. Near the horizon, the Moon Illusion might make it appear bigger and brighter to you but this Harvest Moon will be near lunar apogee. That's the farthest point in its orbit, making it the most distant, and so the smallest, full moon of the year. On August 15 a wheat field harvested in south central France made this a harvest moon scene too, the full moon shining on with beautiful iridescent clouds at sunset.\",\n    \"hdurl\": \"https://apod.nasa.gov/apod/image/1909/HarvestmoonGraffand.jpg\",\n    \"media_type\": \"image\",\n    \"service_version\": \"v1\",\n    \"title\": \"A Harvest Moon\",\n    \"url\": \"https://apod.nasa.gov/apod/image/1909/HarvestmoonGraffand.jpg\"\n}"
+				}
+			]
+		}
+	],
+	"event": [
+		{
+			"listen": "prerequest",
+			"script": {
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		},
+		{
+			"listen": "test",
+			"script": {
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		}
+	]
+}
