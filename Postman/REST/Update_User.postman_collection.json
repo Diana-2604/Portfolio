@@ -1,0 +1,3372 @@
+{
+	"info": {
+		"_postman_id": "a5f3b047-085f-446e-b781-936fedb36d4d",
+		"name": "GB API Seminars",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "24309717"
+	},
+	"item": [
+		{
+			"name": "Create post",
+			"item": [
+				{
+					"name": "Create valid post",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code is 200\", function () {",
+									"    pm.response.to.have.status(200);",
+									"});",
+									"",
+									"var schema = {",
+									"    \"type\": \"object\",",
+									"    \"properties\": {",
+									"        \"item\": {",
+									"            \"type\": \"object\",",
+									"            \"properties\": {",
+									"                \"id\": { \"type\": \"number\" },",
+									"                \"title\": { \"type\": \"string\" },",
+									"                \"description\": { \"type\": \"string\" },",
+									"                \"content\": { \"type\": \"string\" },",
+									"                \"authorId\": { \"type\": \"number\" },",
+									"                \"mainImage\": {",
+									"                    \"id\": { \"type\": \"number\" },",
+									"                    \"cdnUrl\": { \"type\": \"string\" }",
+									"                },",
+									"                \"updatedAt\": { \"type\": \"string\" },",
+									"                \"createdAt\": { \"type\": \"string\" },",
+									"                \"labels\": { \"type\": \"array\" },",
+									"                \"delayPublishTo\": { \"type\": \"string\" },",
+									"                \"draft\": { \"type\": \"boolean\" }",
+									"            }",
+									"        }",
+									"    }",
+									"}",
+									"",
+									"pm.test(\"Validate schema\", () => {",
+									"    pm.response.to.have.jsonSchema(schema);",
+									"});",
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "X-Auth-Token",
+								"value": "{{token}}",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "image",
+									"type": "file",
+									"src": "/Users/diana/Downloads/cat.jpeg"
+								},
+								{
+									"key": "title",
+									"value": "Валидный пост",
+									"type": "text"
+								},
+								{
+									"key": "description",
+									"value": "Валидный запрос",
+									"type": "text"
+								},
+								{
+									"key": "content",
+									"value": "Через постман",
+									"type": "text"
+								},
+								{
+									"key": "isDraft",
+									"value": "0",
+									"type": "text"
+								},
+								{
+									"key": "delayPublishTo",
+									"value": "2023-05-20",
+									"type": "text"
+								}
+							]
+						},
+						"url": {
+							"raw": "https://test-stand.gb.ru/gateway/posts",
+							"protocol": "https",
+							"host": [
+								"test-stand",
+								"gb",
+								"ru"
+							],
+							"path": [
+								"gateway",
+								"posts"
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "Create valid post",
+							"originalRequest": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "X-Auth-Token",
+										"value": "{{token}}",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "formdata",
+									"formdata": [
+										{
+											"key": "image",
+											"type": "file",
+											"src": "/Users/diana/Downloads/cat.jpeg"
+										},
+										{
+											"key": "title",
+											"value": "Первый пост",
+											"type": "text"
+										},
+										{
+											"key": "description",
+											"value": "Валидный запрос",
+											"type": "text"
+										},
+										{
+											"key": "content",
+											"value": "Через постман",
+											"type": "text"
+										},
+										{
+											"key": "isDraft",
+											"value": "1",
+											"type": "text"
+										},
+										{
+											"key": "delayPublishTo",
+											"value": "2022-10-01",
+											"type": "text"
+										}
+									]
+								},
+								"url": {
+									"raw": "https://test-stand.gb.ru/gateway/posts",
+									"protocol": "https",
+									"host": [
+										"test-stand",
+										"gb",
+										"ru"
+									],
+									"path": [
+										"gateway",
+										"posts"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Date",
+									"value": "Sat, 13 May 2023 12:30:55 GMT"
+								},
+								{
+									"key": "Etag",
+									"value": "\"10j643q\""
+								},
+								{
+									"key": "Content-Length",
+									"value": "420"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"item\": {\n        \"id\": 27863,\n        \"title\": \"Первый пост\",\n        \"description\": \"Валидный запрос\",\n        \"content\": \"Через постман\",\n        \"authorId\": 10400,\n        \"mainImage\": {\n            \"id\": 14698,\n            \"cdnUrl\": \"http://test-stand.gb.ru/files/public/image/0e5050b3a4829cf2e873ef172170e987.jpg\"\n        },\n        \"updatedAt\": \"2023-05-13T12:30:55+00:00\",\n        \"createdAt\": \"2023-05-13T12:30:55+00:00\",\n        \"labels\": [],\n        \"delayPublishTo\": \"2022-10-01T00:00:00+00:00\",\n        \"draft\": true\n    }\n}"
+						},
+						{
+							"name": "Png image",
+							"originalRequest": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "X-Auth-Token",
+										"value": "{{token}}",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "formdata",
+									"formdata": [
+										{
+											"key": "image",
+											"type": "file",
+											"src": "/Users/diana/Downloads/habr.com_ru_company_jugru_blog_723136_.png"
+										},
+										{
+											"key": "title",
+											"value": "Пост с png картинкой",
+											"type": "text"
+										},
+										{
+											"key": "description",
+											"value": "Валидный запрос",
+											"type": "text"
+										},
+										{
+											"key": "content",
+											"value": "Через постман",
+											"type": "text"
+										},
+										{
+											"key": "isDraft",
+											"value": "0",
+											"type": "text"
+										},
+										{
+											"key": "delayPublishTo",
+											"value": "2023-05-20",
+											"type": "text"
+										}
+									]
+								},
+								"url": {
+									"raw": "https://test-stand.gb.ru/gateway/posts",
+									"protocol": "https",
+									"host": [
+										"test-stand",
+										"gb",
+										"ru"
+									],
+									"path": [
+										"gateway",
+										"posts"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Date",
+									"value": "Sat, 13 May 2023 13:14:10 GMT"
+								},
+								{
+									"key": "Etag",
+									"value": "\"w6zxd8\""
+								},
+								{
+									"key": "Content-Length",
+									"value": "434"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"item\": {\n        \"id\": 28016,\n        \"title\": \"Пост с png картинкой\",\n        \"description\": \"Валидный запрос\",\n        \"content\": \"Через постман\",\n        \"authorId\": 10400,\n        \"mainImage\": {\n            \"id\": 14714,\n            \"cdnUrl\": \"http://test-stand.gb.ru/files/public/image/a8fa4622b35dba4cbfe0ebdbf90a9264.png\"\n        },\n        \"updatedAt\": \"2023-05-13T13:14:10+00:00\",\n        \"createdAt\": \"2023-05-13T13:14:10+00:00\",\n        \"labels\": [],\n        \"delayPublishTo\": \"2023-05-20T00:00:00+00:00\",\n        \"draft\": false\n    }\n}"
+						}
+					]
+				},
+				{
+					"name": "Create post with max title length",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code is 200\", function () {",
+									"    pm.response.to.have.status(200);",
+									"});",
+									"",
+									"var schema = {",
+									"    \"type\": \"object\",",
+									"    \"properties\": {",
+									"        \"item\": {",
+									"            \"type\": \"object\",",
+									"            \"properties\": {",
+									"                \"id\": { \"type\": \"number\" },",
+									"                \"title\": { \"type\": \"string\" },",
+									"                \"description\": { \"type\": \"string\" },",
+									"                \"content\": { \"type\": \"string\" },",
+									"                \"authorId\": { \"type\": \"number\" },",
+									"                \"mainImage\": {",
+									"                    \"id\": { \"type\": \"number\" },",
+									"                    \"cdnUrl\": { \"type\": \"string\" }",
+									"                },",
+									"                \"updatedAt\": { \"type\": \"string\" },",
+									"                \"createdAt\": { \"type\": \"string\" },",
+									"                \"labels\": { \"type\": \"array\" },",
+									"                \"delayPublishTo\": { \"type\": \"string\" },",
+									"                \"draft\": { \"type\": \"boolean\" }",
+									"            }",
+									"        }",
+									"    }",
+									"}",
+									"",
+									"pm.test(\"Validate schema\", () => {",
+									"    pm.response.to.have.jsonSchema(schema);",
+									"});",
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "X-Auth-Token",
+								"value": "{{token}}",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "image",
+									"type": "file",
+									"src": "/Users/diana/Downloads/cat.jpeg"
+								},
+								{
+									"key": "title",
+									"value": "40_HORF86jLP7inERyFhZ3euc0ZkhOgUbwuiurw5",
+									"type": "text"
+								},
+								{
+									"key": "description",
+									"value": "Валидный запрос",
+									"type": "text"
+								},
+								{
+									"key": "content",
+									"value": "Через постман",
+									"type": "text"
+								},
+								{
+									"key": "isDraft",
+									"value": "1",
+									"type": "text"
+								},
+								{
+									"key": "delayPublishTo",
+									"value": "2022-10-01",
+									"type": "text"
+								}
+							]
+						},
+						"url": {
+							"raw": "https://test-stand.gb.ru/gateway/posts",
+							"protocol": "https",
+							"host": [
+								"test-stand",
+								"gb",
+								"ru"
+							],
+							"path": [
+								"gateway",
+								"posts"
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "Create post with max title length",
+							"originalRequest": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "X-Auth-Token",
+										"value": "{{token}}",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "formdata",
+									"formdata": [
+										{
+											"key": "image",
+											"type": "file",
+											"src": "/Users/diana/Downloads/cat.jpeg"
+										},
+										{
+											"key": "title",
+											"value": "40_HORF86jLP7inERyFhZ3euc0ZkhOgUbwuiurw5",
+											"type": "text"
+										},
+										{
+											"key": "description",
+											"value": "Валидный запрос",
+											"type": "text"
+										},
+										{
+											"key": "content",
+											"value": "Через постман",
+											"type": "text"
+										},
+										{
+											"key": "isDraft",
+											"value": "1",
+											"type": "text"
+										},
+										{
+											"key": "delayPublishTo",
+											"value": "2022-10-01",
+											"type": "text"
+										}
+									]
+								},
+								"url": {
+									"raw": "https://test-stand.gb.ru/gateway/posts",
+									"protocol": "https",
+									"host": [
+										"test-stand",
+										"gb",
+										"ru"
+									],
+									"path": [
+										"gateway",
+										"posts"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Date",
+									"value": "Sat, 13 May 2023 12:44:33 GMT"
+								},
+								{
+									"key": "Etag",
+									"value": "\"aptw95\""
+								},
+								{
+									"key": "Content-Length",
+									"value": "359"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"item\": {\n        \"id\": 27877,\n        \"title\": \"40_HORF86jLP7inERyFhZ3euc0ZkhOgUbwuiurw5\",\n        \"description\": \"Валидный запрос\",\n        \"content\": \"Через постман\",\n        \"authorId\": 10400,\n        \"mainImage\": {\n            \"id\": null,\n            \"cdnUrl\": \"\"\n        },\n        \"updatedAt\": \"2023-05-13T12:44:33+00:00\",\n        \"createdAt\": \"2023-05-13T12:44:33+00:00\",\n        \"labels\": [],\n        \"delayPublishTo\": \"2022-10-01T00:00:00+00:00\",\n        \"draft\": true\n    }\n}"
+						}
+					]
+				},
+				{
+					"name": "Create post with max content length",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code is 200\", function () {",
+									"    pm.response.to.have.status(200);",
+									"});",
+									"",
+									"var schema = {",
+									"    \"type\": \"object\",",
+									"    \"properties\": {",
+									"        \"item\": {",
+									"            \"type\": \"object\",",
+									"            \"properties\": {",
+									"                \"id\": { \"type\": \"number\" },",
+									"                \"title\": { \"type\": \"string\" },",
+									"                \"description\": { \"type\": \"string\" },",
+									"                \"content\": { \"type\": \"string\" },",
+									"                \"authorId\": { \"type\": \"number\" },",
+									"                \"mainImage\": {",
+									"                    \"id\": { \"type\": \"number\" },",
+									"                    \"cdnUrl\": { \"type\": \"string\" }",
+									"                },",
+									"                \"updatedAt\": { \"type\": \"string\" },",
+									"                \"createdAt\": { \"type\": \"string\" },",
+									"                \"labels\": { \"type\": \"array\" },",
+									"                \"delayPublishTo\": { \"type\": \"string\" },",
+									"                \"draft\": { \"type\": \"boolean\" }",
+									"            }",
+									"        }",
+									"    }",
+									"}",
+									"",
+									"pm.test(\"Validate schema\", () => {",
+									"    pm.response.to.have.jsonSchema(schema);",
+									"});",
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "X-Auth-Token",
+								"value": "{{token}}",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "image",
+									"type": "file",
+									"src": "/Users/diana/Downloads/cat.jpeg"
+								},
+								{
+									"key": "title",
+									"value": "40_HORF86jLP7inERyFhZ3euc0ZkhOgUbwuiurw5",
+									"type": "text"
+								},
+								{
+									"key": "description",
+									"value": "Валидный запрос",
+									"type": "text"
+								},
+								{
+									"key": "content",
+									"value": "1000_vwFxODrkoNMLWpb0KB9J6E5J2DoFfu4w9yzhNKIHgZfF4cWe5ekVcc05xFZMEbxtwvd4UhkEcKGvP11msEBAdCQFU91L2yX9av0v4c2ZN771YoNGwP6fHWjNqFgBT1qVTlZ27nHiELqfRHfQTf3LcK8rmEaeOKgZbwNq35v5BygO8jQ3td3Vt2qB39HOTgvB84pNfPCqWiz6Qlicph0tBO8nLO05inoam5eMWd3BedCgPPqZb8RWZyCW4jlyL1sf4y3VU7fShgIZvPN3js1cZWeVIbb6HE3Guac3khsV4rakwSgDqfHr0lUsymKPUioeVly2RAScgL1atHaWA4LUJBmqgxVyOXtDtB9zGTKVHed8uqBo6M1608fwuhHGriziP7FAFQi9jrYzTRv9JNSt0TRH7iOFhDkV4bmm27lG4MvFxi3u0Q9LN2CrYhfYO67YhHzQ5wbvx6nmm3DjeBBVtx5k1p7TIMNXSIiqX60HpPMGAjnZYYa6sFC04P8g7daT8QkkioapZAaL0iLu2UwfJmXWVheyWbxf7Ws8MGyAzapPGq3y5KfnoqBBr2I3xKIQ0QSAoQiyyRYmxSY4B8I6oLPXm0ptvt24SKisw8e6r8sTUSxCfUbMTSN6QzkzH2GNuvrl7uDbHzRFOUdhcc2MQq009sObptEsanC92NBH8xAUuvBprAw1AcskS1l9EvJPkmkAkQGzut7EDDvA6eIGJ1daml8SqFN4to3LrxeXYpI23uVQBYuM84MTNqTkt1A0bvOx9bt8QcW8bj3Y0v0m2iAg3tzLIRmpt3SwJyTInEbBOuUXtH2FrBd3DGt8gpyYW1FNIPuiLlRbJf8TrNvD4JA8lsTJiUJ9RGN9LUCNVU230y6hyAsEEMfJoppGz8P778crUn69xdwtXUmN4cl9PjLSlqf44OglHi6WVaXkpMIvFTJ3kuXIN7D3M9ZgaRDsaQdaWX4VJmUvf0cIni7cocledRo3D1Bt0Qv",
+									"type": "text"
+								},
+								{
+									"key": "isDraft",
+									"value": "1",
+									"type": "text"
+								},
+								{
+									"key": "delayPublishTo",
+									"value": "2022-10-01",
+									"type": "text"
+								}
+							]
+						},
+						"url": {
+							"raw": "https://test-stand.gb.ru/gateway/posts",
+							"protocol": "https",
+							"host": [
+								"test-stand",
+								"gb",
+								"ru"
+							],
+							"path": [
+								"gateway",
+								"posts"
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "Create post with max content length",
+							"originalRequest": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "X-Auth-Token",
+										"value": "{{token}}",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "formdata",
+									"formdata": [
+										{
+											"key": "image",
+											"type": "file",
+											"src": "/Users/diana/Downloads/cat.jpeg"
+										},
+										{
+											"key": "title",
+											"value": "40_HORF86jLP7inERyFhZ3euc0ZkhOgUbwuiurw5",
+											"type": "text"
+										},
+										{
+											"key": "description",
+											"value": "Валидный запрос",
+											"type": "text"
+										},
+										{
+											"key": "content",
+											"value": "1000_vwFxODrkoNMLWpb0KB9J6E5J2DoFfu4w9yzhNKIHgZfF4cWe5ekVcc05xFZMEbxtwvd4UhkEcKGvP11msEBAdCQFU91L2yX9av0v4c2ZN771YoNGwP6fHWjNqFgBT1qVTlZ27nHiELqfRHfQTf3LcK8rmEaeOKgZbwNq35v5BygO8jQ3td3Vt2qB39HOTgvB84pNfPCqWiz6Qlicph0tBO8nLO05inoam5eMWd3BedCgPPqZb8RWZyCW4jlyL1sf4y3VU7fShgIZvPN3js1cZWeVIbb6HE3Guac3khsV4rakwSgDqfHr0lUsymKPUioeVly2RAScgL1atHaWA4LUJBmqgxVyOXtDtB9zGTKVHed8uqBo6M1608fwuhHGriziP7FAFQi9jrYzTRv9JNSt0TRH7iOFhDkV4bmm27lG4MvFxi3u0Q9LN2CrYhfYO67YhHzQ5wbvx6nmm3DjeBBVtx5k1p7TIMNXSIiqX60HpPMGAjnZYYa6sFC04P8g7daT8QkkioapZAaL0iLu2UwfJmXWVheyWbxf7Ws8MGyAzapPGq3y5KfnoqBBr2I3xKIQ0QSAoQiyyRYmxSY4B8I6oLPXm0ptvt24SKisw8e6r8sTUSxCfUbMTSN6QzkzH2GNuvrl7uDbHzRFOUdhcc2MQq009sObptEsanC92NBH8xAUuvBprAw1AcskS1l9EvJPkmkAkQGzut7EDDvA6eIGJ1daml8SqFN4to3LrxeXYpI23uVQBYuM84MTNqTkt1A0bvOx9bt8QcW8bj3Y0v0m2iAg3tzLIRmpt3SwJyTInEbBOuUXtH2FrBd3DGt8gpyYW1FNIPuiLlRbJf8TrNvD4JA8lsTJiUJ9RGN9LUCNVU230y6hyAsEEMfJoppGz8P778crUn69xdwtXUmN4cl9PjLSlqf44OglHi6WVaXkpMIvFTJ3kuXIN7D3M9ZgaRDsaQdaWX4VJmUvf0cIni7cocledRo3D1Bt0Qv",
+											"type": "text"
+										},
+										{
+											"key": "isDraft",
+											"value": "1",
+											"type": "text"
+										},
+										{
+											"key": "delayPublishTo",
+											"value": "2022-10-01",
+											"type": "text"
+										}
+									]
+								},
+								"url": {
+									"raw": "https://test-stand.gb.ru/gateway/posts",
+									"protocol": "https",
+									"host": [
+										"test-stand",
+										"gb",
+										"ru"
+									],
+									"path": [
+										"gateway",
+										"posts"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Date",
+									"value": "Sat, 13 May 2023 13:02:39 GMT"
+								},
+								{
+									"key": "Etag",
+									"value": "\"1pnxeu9\""
+								},
+								{
+									"key": "Content-Length",
+									"value": "1334"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"item\": {\n        \"id\": 27977,\n        \"title\": \"40_HORF86jLP7inERyFhZ3euc0ZkhOgUbwuiurw5\",\n        \"description\": \"Валидный запрос\",\n        \"content\": \"1000_vwFxODrkoNMLWpb0KB9J6E5J2DoFfu4w9yzhNKIHgZfF4cWe5ekVcc05xFZMEbxtwvd4UhkEcKGvP11msEBAdCQFU91L2yX9av0v4c2ZN771YoNGwP6fHWjNqFgBT1qVTlZ27nHiELqfRHfQTf3LcK8rmEaeOKgZbwNq35v5BygO8jQ3td3Vt2qB39HOTgvB84pNfPCqWiz6Qlicph0tBO8nLO05inoam5eMWd3BedCgPPqZb8RWZyCW4jlyL1sf4y3VU7fShgIZvPN3js1cZWeVIbb6HE3Guac3khsV4rakwSgDqfHr0lUsymKPUioeVly2RAScgL1atHaWA4LUJBmqgxVyOXtDtB9zGTKVHed8uqBo6M1608fwuhHGriziP7FAFQi9jrYzTRv9JNSt0TRH7iOFhDkV4bmm27lG4MvFxi3u0Q9LN2CrYhfYO67YhHzQ5wbvx6nmm3DjeBBVtx5k1p7TIMNXSIiqX60HpPMGAjnZYYa6sFC04P8g7daT8QkkioapZAaL0iLu2UwfJmXWVheyWbxf7Ws8MGyAzapPGq3y5KfnoqBBr2I3xKIQ0QSAoQiyyRYmxSY4B8I6oLPXm0ptvt24SKisw8e6r8sTUSxCfUbMTSN6QzkzH2GNuvrl7uDbHzRFOUdhcc2MQq009sObptEsanC92NBH8xAUuvBprAw1AcskS1l9EvJPkmkAkQGzut7EDDvA6eIGJ1daml8SqFN4to3LrxeXYpI23uVQBYuM84MTNqTkt1A0bvOx9bt8QcW8bj3Y0v0m2iAg3tzLIRmpt3SwJyTInEbBOuUXtH2FrBd3DGt8gpyYW1FNIPuiLlRbJf8TrNvD4JA8lsTJiUJ9RGN9LUCNVU230y6hyAsEEMfJoppGz8P778crUn69xdwtXUmN4cl9PjLSlqf44OglHi6WVaXkpMIvFTJ3kuXIN7D3M9ZgaRDsaQdaWX4VJmUvf0cIni7cocledRo3D1Bt0Qv\",\n        \"authorId\": 10400,\n        \"mainImage\": {\n            \"id\": null,\n            \"cdnUrl\": \"\"\n        },\n        \"updatedAt\": \"2023-05-13T13:02:39+00:00\",\n        \"createdAt\": \"2023-05-13T13:02:39+00:00\",\n        \"labels\": [],\n        \"delayPublishTo\": \"2022-10-01T00:00:00+00:00\",\n        \"draft\": true\n    }\n}"
+						}
+					]
+				},
+				{
+					"name": "Create post with max description length",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code is 200\", function () {",
+									"    pm.response.to.have.status(200);",
+									"});",
+									"",
+									"var schema = {",
+									"    \"type\": \"object\",",
+									"    \"properties\": {",
+									"        \"item\": {",
+									"            \"type\": \"object\",",
+									"            \"properties\": {",
+									"                \"id\": { \"type\": \"number\" },",
+									"                \"title\": { \"type\": \"string\" },",
+									"                \"description\": { \"type\": \"string\" },",
+									"                \"content\": { \"type\": \"string\" },",
+									"                \"authorId\": { \"type\": \"number\" },",
+									"                \"mainImage\": {",
+									"                    \"id\": { \"type\": \"number\" },",
+									"                    \"cdnUrl\": { \"type\": \"string\" }",
+									"                },",
+									"                \"updatedAt\": { \"type\": \"string\" },",
+									"                \"createdAt\": { \"type\": \"string\" },",
+									"                \"labels\": { \"type\": \"array\" },",
+									"                \"delayPublishTo\": { \"type\": \"string\" },",
+									"                \"draft\": { \"type\": \"boolean\" }",
+									"            }",
+									"        }",
+									"    }",
+									"}",
+									"",
+									"pm.test(\"Validate schema\", () => {",
+									"    pm.response.to.have.jsonSchema(schema);",
+									"});",
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "X-Auth-Token",
+								"value": "{{token}}",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "image",
+									"type": "file",
+									"src": "/Users/diana/Downloads/cat.jpeg"
+								},
+								{
+									"key": "title",
+									"value": "Post with long description",
+									"type": "text"
+								},
+								{
+									"key": "description",
+									"value": "100_jMwKPEy7HyvZZpo9CdoX6gLvVdTrPoETneliECVh7e8clfbRs59x7F6qQ1ilFjNhWCwdKo0NbaCrYjNBAUZrCN0UyfVQEu9c",
+									"type": "text"
+								},
+								{
+									"key": "content",
+									"value": "Через постман",
+									"type": "text"
+								},
+								{
+									"key": "isDraft",
+									"value": "1",
+									"type": "text"
+								},
+								{
+									"key": "delayPublishTo",
+									"value": "2022-10-01",
+									"type": "text"
+								}
+							]
+						},
+						"url": {
+							"raw": "https://test-stand.gb.ru/gateway/posts",
+							"protocol": "https",
+							"host": [
+								"test-stand",
+								"gb",
+								"ru"
+							],
+							"path": [
+								"gateway",
+								"posts"
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "Create post with max description length",
+							"originalRequest": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "X-Auth-Token",
+										"value": "{{token}}",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "formdata",
+									"formdata": [
+										{
+											"key": "image",
+											"type": "file",
+											"src": "/Users/diana/Downloads/cat.jpeg"
+										},
+										{
+											"key": "title",
+											"value": "Post with long description",
+											"type": "text"
+										},
+										{
+											"key": "description",
+											"value": "100_jMwKPEy7HyvZZpo9CdoX6gLvVdTrPoETneliECVh7e8clfbRs59x7F6qQ1ilFjNhWCwdKo0NbaCrYjNBAUZrCN0UyfVQEu9c",
+											"type": "text"
+										},
+										{
+											"key": "content",
+											"value": "Через постман",
+											"type": "text"
+										},
+										{
+											"key": "isDraft",
+											"value": "1",
+											"type": "text"
+										},
+										{
+											"key": "delayPublishTo",
+											"value": "2022-10-01",
+											"type": "text"
+										}
+									]
+								},
+								"url": {
+									"raw": "https://test-stand.gb.ru/gateway/posts",
+									"protocol": "https",
+									"host": [
+										"test-stand",
+										"gb",
+										"ru"
+									],
+									"path": [
+										"gateway",
+										"posts"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Date",
+									"value": "Sat, 13 May 2023 12:53:01 GMT"
+								},
+								{
+									"key": "Etag",
+									"value": "\"1ghmif3\""
+								},
+								{
+									"key": "Content-Length",
+									"value": "496"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"item\": {\n        \"id\": 27888,\n        \"title\": \"Post with long description\",\n        \"description\": \"100_jMwKPEy7HyvZZpo9CdoX6gLvVdTrPoETneliECVh7e8clfbRs59x7F6qQ1ilFjNhWCwdKo0NbaCrYjNBAUZrCN0UyfVQEu9c\",\n        \"content\": \"Через постман\",\n        \"authorId\": 10400,\n        \"mainImage\": {\n            \"id\": 14712,\n            \"cdnUrl\": \"http://test-stand.gb.ru/files/public/image/ff61473ff3f98ae8f6e9d56430f4ffd4.jpg\"\n        },\n        \"updatedAt\": \"2023-05-13T12:53:01+00:00\",\n        \"createdAt\": \"2023-05-13T12:53:01+00:00\",\n        \"labels\": [],\n        \"delayPublishTo\": \"2022-10-01T00:00:00+00:00\",\n        \"draft\": true\n    }\n}"
+						}
+					]
+				},
+				{
+					"name": "Create post with invalid title length",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code is 400\", function () {",
+									"    pm.response.to.have.status(400);",
+									"});",
+									"",
+									"",
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "X-Auth-Token",
+								"value": "{{token}}",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "image",
+									"type": "file",
+									"src": "/Users/diana/Downloads/cat.jpeg"
+								},
+								{
+									"key": "title",
+									"value": "41_oHORF86jLP7inERyFhZ3euc0ZkhOgUbwuiurw5",
+									"type": "text"
+								},
+								{
+									"key": "description",
+									"value": "Валидный запрос",
+									"type": "text"
+								},
+								{
+									"key": "content",
+									"value": "Через постман",
+									"type": "text"
+								},
+								{
+									"key": "isDraft",
+									"value": "1",
+									"type": "text"
+								},
+								{
+									"key": "delayPublishTo",
+									"value": "2022-10-01",
+									"type": "text"
+								}
+							]
+						},
+						"url": {
+							"raw": "https://test-stand.gb.ru/gateway/posts",
+							"protocol": "https",
+							"host": [
+								"test-stand",
+								"gb",
+								"ru"
+							],
+							"path": [
+								"gateway",
+								"posts"
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "Create post with invalid title length",
+							"originalRequest": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "X-Auth-Token",
+										"value": "{{token}}",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "formdata",
+									"formdata": [
+										{
+											"key": "image",
+											"type": "file",
+											"src": "/Users/diana/Downloads/cat.jpeg"
+										},
+										{
+											"key": "title",
+											"value": "41_oHORF86jLP7inERyFhZ3euc0ZkhOgUbwuiurw5",
+											"type": "text"
+										},
+										{
+											"key": "description",
+											"value": "Валидный запрос",
+											"type": "text"
+										},
+										{
+											"key": "content",
+											"value": "Через постман",
+											"type": "text"
+										},
+										{
+											"key": "isDraft",
+											"value": "1",
+											"type": "text"
+										},
+										{
+											"key": "delayPublishTo",
+											"value": "2022-10-01",
+											"type": "text"
+										}
+									]
+								},
+								"url": {
+									"raw": "https://test-stand.gb.ru/gateway/posts",
+									"protocol": "https",
+									"host": [
+										"test-stand",
+										"gb",
+										"ru"
+									],
+									"path": [
+										"gateway",
+										"posts"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Date",
+									"value": "Sat, 13 May 2023 12:47:42 GMT"
+								},
+								{
+									"key": "Etag",
+									"value": "\"1ss2rho\""
+								},
+								{
+									"key": "Content-Length",
+									"value": "360"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"item\": {\n        \"id\": 27883,\n        \"title\": \"41_oHORF86jLP7inERyFhZ3euc0ZkhOgUbwuiurw5\",\n        \"description\": \"Валидный запрос\",\n        \"content\": \"Через постман\",\n        \"authorId\": 10400,\n        \"mainImage\": {\n            \"id\": null,\n            \"cdnUrl\": \"\"\n        },\n        \"updatedAt\": \"2023-05-13T12:47:42+00:00\",\n        \"createdAt\": \"2023-05-13T12:47:42+00:00\",\n        \"labels\": [],\n        \"delayPublishTo\": \"2022-10-01T00:00:00+00:00\",\n        \"draft\": true\n    }\n}"
+						}
+					]
+				},
+				{
+					"name": "Create post with invalid description length",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code is 400\", function () {",
+									"    pm.response.to.have.status(400);",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "X-Auth-Token",
+								"value": "{{token}}",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "image",
+									"type": "file",
+									"src": "/Users/diana/Downloads/cat.jpeg"
+								},
+								{
+									"key": "title",
+									"value": "Invalid description length",
+									"type": "text"
+								},
+								{
+									"key": "description",
+									"value": "101_fjMwKPEy7HyvZZpo9CdoX6gLvVdTrPoETneliECVh7e8clfbRs59x7F6qQ1ilFjNhWCwdKo0NbaCrYjNBAUZrCN0UyfVQEu9c",
+									"type": "text"
+								},
+								{
+									"key": "content",
+									"value": "Через постман",
+									"type": "text"
+								},
+								{
+									"key": "isDraft",
+									"value": "1",
+									"type": "text"
+								},
+								{
+									"key": "delayPublishTo",
+									"value": "2022-10-01",
+									"type": "text"
+								}
+							]
+						},
+						"url": {
+							"raw": "https://test-stand.gb.ru/gateway/posts",
+							"protocol": "https",
+							"host": [
+								"test-stand",
+								"gb",
+								"ru"
+							],
+							"path": [
+								"gateway",
+								"posts"
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "Create post with invalid description length",
+							"originalRequest": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "X-Auth-Token",
+										"value": "{{token}}",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "formdata",
+									"formdata": [
+										{
+											"key": "image",
+											"type": "file",
+											"src": "/Users/diana/Downloads/cat.jpeg"
+										},
+										{
+											"key": "title",
+											"value": "Invalid description length",
+											"type": "text"
+										},
+										{
+											"key": "description",
+											"value": "101_fjMwKPEy7HyvZZpo9CdoX6gLvVdTrPoETneliECVh7e8clfbRs59x7F6qQ1ilFjNhWCwdKo0NbaCrYjNBAUZrCN0UyfVQEu9c",
+											"type": "text"
+										},
+										{
+											"key": "content",
+											"value": "Через постман",
+											"type": "text"
+										},
+										{
+											"key": "isDraft",
+											"value": "1",
+											"type": "text"
+										},
+										{
+											"key": "delayPublishTo",
+											"value": "2022-10-01",
+											"type": "text"
+										}
+									]
+								},
+								"url": {
+									"raw": "https://test-stand.gb.ru/gateway/posts",
+									"protocol": "https",
+									"host": [
+										"test-stand",
+										"gb",
+										"ru"
+									],
+									"path": [
+										"gateway",
+										"posts"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Date",
+									"value": "Sat, 13 May 2023 12:54:20 GMT"
+								},
+								{
+									"key": "Etag",
+									"value": "\"1aif4hk\""
+								},
+								{
+									"key": "Content-Length",
+									"value": "417"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"item\": {\n        \"id\": 27889,\n        \"title\": \"Invalid description length\",\n        \"description\": \"101_fjMwKPEy7HyvZZpo9CdoX6gLvVdTrPoETneliECVh7e8clfbRs59x7F6qQ1ilFjNhWCwdKo0NbaCrYjNBAUZrCN0UyfVQEu9c\",\n        \"content\": \"Через постман\",\n        \"authorId\": 10400,\n        \"mainImage\": {\n            \"id\": null,\n            \"cdnUrl\": \"\"\n        },\n        \"updatedAt\": \"2023-05-13T12:54:20+00:00\",\n        \"createdAt\": \"2023-05-13T12:54:20+00:00\",\n        \"labels\": [],\n        \"delayPublishTo\": \"2022-10-01T00:00:00+00:00\",\n        \"draft\": true\n    }\n}"
+						}
+					]
+				},
+				{
+					"name": "Create post with invalid content length",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code is 400\", function () {",
+									"    pm.response.to.have.status(400);",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "X-Auth-Token",
+								"value": "{{token}}",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "image",
+									"type": "file",
+									"src": "/Users/diana/Downloads/cat.jpeg"
+								},
+								{
+									"key": "title",
+									"value": "Invalid content length",
+									"type": "text"
+								},
+								{
+									"key": "description",
+									"value": "description",
+									"type": "text"
+								},
+								{
+									"key": "content",
+									"value": "1001_vewFxODrkoNMLWpb0KB9J6E5J2DoFfu4w9yzhNKIHgZfF4cWe5ekVcc05xFZMEbxtwvd4UhkEcKGvP11msEBAdCQFU91L2yX9av0v4c2ZN771YoNGwP6fHWjNqFgBT1qVTlZ27nHiELqfRHfQTf3LcK8rmEaeOKgZbwNq35v5BygO8jQ3td3Vt2qB39HOTgvB84pNfPCqWiz6Qlicph0tBO8nLO05inoam5eMWd3BedCgPPqZb8RWZyCW4jlyL1sf4y3VU7fShgIZvPN3js1cZWeVIbb6HE3Guac3khsV4rakwSgDqfHr0lUsymKPUioeVly2RAScgL1atHaWA4LUJBmqgxVyOXtDtB9zGTKVHed8uqBo6M1608fwuhHGriziP7FAFQi9jrYzTRv9JNSt0TRH7iOFhDkV4bmm27lG4MvFxi3u0Q9LN2CrYhfYO67YhHzQ5wbvx6nmm3DjeBBVtx5k1p7TIMNXSIiqX60HpPMGAjnZYYa6sFC04P8g7daT8QkkioapZAaL0iLu2UwfJmXWVheyWbxf7Ws8MGyAzapPGq3y5KfnoqBBr2I3xKIQ0QSAoQiyyRYmxSY4B8I6oLPXm0ptvt24SKisw8e6r8sTUSxCfUbMTSN6QzkzH2GNuvrl7uDbHzRFOUdhcc2MQq009sObptEsanC92NBH8xAUuvBprAw1AcskS1l9EvJPkmkAkQGzut7EDDvA6eIGJ1daml8SqFN4to3LrxeXYpI23uVQBYuM84MTNqTkt1A0bvOx9bt8QcW8bj3Y0v0m2iAg3tzLIRmpt3SwJyTInEbBOuUXtH2FrBd3DGt8gpyYW1FNIPuiLlRbJf8TrNvD4JA8lsTJiUJ9RGN9LUCNVU230y6hyAsEEMfJoppGz8P778crUn69xdwtXUmN4cl9PjLSlqf44OglHi6WVaXkpMIvFTJ3kuXIN7D3M9ZgaRDsaQdaWX4VJmUvf0cIni7cocledRo3D1Bt0Qv",
+									"type": "text"
+								},
+								{
+									"key": "isDraft",
+									"value": "1",
+									"type": "text"
+								},
+								{
+									"key": "delayPublishTo",
+									"value": "2022-10-01",
+									"type": "text"
+								}
+							]
+						},
+						"url": {
+							"raw": "https://test-stand.gb.ru/gateway/posts",
+							"protocol": "https",
+							"host": [
+								"test-stand",
+								"gb",
+								"ru"
+							],
+							"path": [
+								"gateway",
+								"posts"
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "Create post with invalid content length",
+							"originalRequest": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "X-Auth-Token",
+										"value": "{{token}}",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "formdata",
+									"formdata": [
+										{
+											"key": "image",
+											"type": "file",
+											"src": "/Users/diana/Downloads/cat.jpeg"
+										},
+										{
+											"key": "title",
+											"value": "Invalid content length",
+											"type": "text"
+										},
+										{
+											"key": "description",
+											"value": "description",
+											"type": "text"
+										},
+										{
+											"key": "content",
+											"value": "1001_vewFxODrkoNMLWpb0KB9J6E5J2DoFfu4w9yzhNKIHgZfF4cWe5ekVcc05xFZMEbxtwvd4UhkEcKGvP11msEBAdCQFU91L2yX9av0v4c2ZN771YoNGwP6fHWjNqFgBT1qVTlZ27nHiELqfRHfQTf3LcK8rmEaeOKgZbwNq35v5BygO8jQ3td3Vt2qB39HOTgvB84pNfPCqWiz6Qlicph0tBO8nLO05inoam5eMWd3BedCgPPqZb8RWZyCW4jlyL1sf4y3VU7fShgIZvPN3js1cZWeVIbb6HE3Guac3khsV4rakwSgDqfHr0lUsymKPUioeVly2RAScgL1atHaWA4LUJBmqgxVyOXtDtB9zGTKVHed8uqBo6M1608fwuhHGriziP7FAFQi9jrYzTRv9JNSt0TRH7iOFhDkV4bmm27lG4MvFxi3u0Q9LN2CrYhfYO67YhHzQ5wbvx6nmm3DjeBBVtx5k1p7TIMNXSIiqX60HpPMGAjnZYYa6sFC04P8g7daT8QkkioapZAaL0iLu2UwfJmXWVheyWbxf7Ws8MGyAzapPGq3y5KfnoqBBr2I3xKIQ0QSAoQiyyRYmxSY4B8I6oLPXm0ptvt24SKisw8e6r8sTUSxCfUbMTSN6QzkzH2GNuvrl7uDbHzRFOUdhcc2MQq009sObptEsanC92NBH8xAUuvBprAw1AcskS1l9EvJPkmkAkQGzut7EDDvA6eIGJ1daml8SqFN4to3LrxeXYpI23uVQBYuM84MTNqTkt1A0bvOx9bt8QcW8bj3Y0v0m2iAg3tzLIRmpt3SwJyTInEbBOuUXtH2FrBd3DGt8gpyYW1FNIPuiLlRbJf8TrNvD4JA8lsTJiUJ9RGN9LUCNVU230y6hyAsEEMfJoppGz8P778crUn69xdwtXUmN4cl9PjLSlqf44OglHi6WVaXkpMIvFTJ3kuXIN7D3M9ZgaRDsaQdaWX4VJmUvf0cIni7cocledRo3D1Bt0Qv",
+											"type": "text"
+										},
+										{
+											"key": "isDraft",
+											"value": "1",
+											"type": "text"
+										},
+										{
+											"key": "delayPublishTo",
+											"value": "2022-10-01",
+											"type": "text"
+										}
+									]
+								},
+								"url": {
+									"raw": "https://test-stand.gb.ru/gateway/posts",
+									"protocol": "https",
+									"host": [
+										"test-stand",
+										"gb",
+										"ru"
+									],
+									"path": [
+										"gateway",
+										"posts"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Date",
+									"value": "Sat, 13 May 2023 13:04:22 GMT"
+								},
+								{
+									"key": "Etag",
+									"value": "\"155jq1q\""
+								},
+								{
+									"key": "Content-Length",
+									"value": "1299"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"item\": {\n        \"id\": 28011,\n        \"title\": \"Invalid content length\",\n        \"description\": \"description\",\n        \"content\": \"1001_vewFxODrkoNMLWpb0KB9J6E5J2DoFfu4w9yzhNKIHgZfF4cWe5ekVcc05xFZMEbxtwvd4UhkEcKGvP11msEBAdCQFU91L2yX9av0v4c2ZN771YoNGwP6fHWjNqFgBT1qVTlZ27nHiELqfRHfQTf3LcK8rmEaeOKgZbwNq35v5BygO8jQ3td3Vt2qB39HOTgvB84pNfPCqWiz6Qlicph0tBO8nLO05inoam5eMWd3BedCgPPqZb8RWZyCW4jlyL1sf4y3VU7fShgIZvPN3js1cZWeVIbb6HE3Guac3khsV4rakwSgDqfHr0lUsymKPUioeVly2RAScgL1atHaWA4LUJBmqgxVyOXtDtB9zGTKVHed8uqBo6M1608fwuhHGriziP7FAFQi9jrYzTRv9JNSt0TRH7iOFhDkV4bmm27lG4MvFxi3u0Q9LN2CrYhfYO67YhHzQ5wbvx6nmm3DjeBBVtx5k1p7TIMNXSIiqX60HpPMGAjnZYYa6sFC04P8g7daT8QkkioapZAaL0iLu2UwfJmXWVheyWbxf7Ws8MGyAzapPGq3y5KfnoqBBr2I3xKIQ0QSAoQiyyRYmxSY4B8I6oLPXm0ptvt24SKisw8e6r8sTUSxCfUbMTSN6QzkzH2GNuvrl7uDbHzRFOUdhcc2MQq009sObptEsanC92NBH8xAUuvBprAw1AcskS1l9EvJPkmkAkQGzut7EDDvA6eIGJ1daml8SqFN4to3LrxeXYpI23uVQBYuM84MTNqTkt1A0bvOx9bt8QcW8bj3Y0v0m2iAg3tzLIRmpt3SwJyTInEbBOuUXtH2FrBd3DGt8gpyYW1FNIPuiLlRbJf8TrNvD4JA8lsTJiUJ9RGN9LUCNVU230y6hyAsEEMfJoppGz8P778crUn69xdwtXUmN4cl9PjLSlqf44OglHi6WVaXkpMIvFTJ3kuXIN7D3M9ZgaRDsaQdaWX4VJmUvf0cIni7cocledRo3D1Bt0Qv\",\n        \"authorId\": 10400,\n        \"mainImage\": {\n            \"id\": null,\n            \"cdnUrl\": \"\"\n        },\n        \"updatedAt\": \"2023-05-13T13:04:22+00:00\",\n        \"createdAt\": \"2023-05-13T13:04:22+00:00\",\n        \"labels\": [],\n        \"delayPublishTo\": \"2022-10-01T00:00:00+00:00\",\n        \"draft\": true\n    }\n}"
+						}
+					]
+				},
+				{
+					"name": "Create post with invalid image",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code is 400\", function () {",
+									"    pm.response.to.have.status(400);",
+									"});",
+									"",
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "X-Auth-Token",
+								"value": "{{token}}",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "image",
+									"type": "file",
+									"src": "/Users/diana/Downloads/png 3.9 mb.png"
+								},
+								{
+									"key": "title",
+									"value": "Пост с невалидной картинкой",
+									"type": "text"
+								},
+								{
+									"key": "description",
+									"value": "Невалидный запрос",
+									"type": "text"
+								},
+								{
+									"key": "content",
+									"value": "Через постман",
+									"type": "text"
+								},
+								{
+									"key": "isDraft",
+									"value": "0",
+									"type": "text"
+								},
+								{
+									"key": "delayPublishTo",
+									"value": "2023-05-20",
+									"type": "text"
+								}
+							]
+						},
+						"url": {
+							"raw": "https://test-stand.gb.ru/gateway/posts",
+							"protocol": "https",
+							"host": [
+								"test-stand",
+								"gb",
+								"ru"
+							],
+							"path": [
+								"gateway",
+								"posts"
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "Wrong format",
+							"originalRequest": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "X-Auth-Token",
+										"value": "{{token}}",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "formdata",
+									"formdata": [
+										{
+											"key": "image",
+											"type": "file",
+											"src": "/Users/diana/Downloads/butterfly.gif"
+										},
+										{
+											"key": "title",
+											"value": "Пост с невалидной картинкой",
+											"type": "text"
+										},
+										{
+											"key": "description",
+											"value": "Невалидный запрос",
+											"type": "text"
+										},
+										{
+											"key": "content",
+											"value": "Через постман",
+											"type": "text"
+										},
+										{
+											"key": "isDraft",
+											"value": "0",
+											"type": "text"
+										},
+										{
+											"key": "delayPublishTo",
+											"value": "2023-05-20",
+											"type": "text"
+										}
+									]
+								},
+								"url": {
+									"raw": "https://test-stand.gb.ru/gateway/posts",
+									"protocol": "https",
+									"host": [
+										"test-stand",
+										"gb",
+										"ru"
+									],
+									"path": [
+										"gateway",
+										"posts"
+									]
+								}
+							},
+							"status": "Bad Request",
+							"code": 400,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Date",
+									"value": "Sat, 13 May 2023 13:18:33 GMT"
+								},
+								{
+									"key": "Etag",
+									"value": "\"wksb4l\""
+								},
+								{
+									"key": "Content-Length",
+									"value": "174"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"error\": \"validation unsuccessful\",\n    \"code\": 400,\n    \"message\": [\n        {\n            \"message\": \"Please upload a valid image: jpeg or png\",\n            \"path\": \"image\",\n            \"code\": \"744f00bc-4389-4c74-92de-9a43cde55534\"\n        }\n    ]\n}"
+						},
+						{
+							"name": "Heavy image",
+							"originalRequest": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "X-Auth-Token",
+										"value": "{{token}}",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "formdata",
+									"formdata": [
+										{
+											"key": "image",
+											"type": "file",
+											"src": "/Users/diana/Downloads/png 3.9 mb.png"
+										},
+										{
+											"key": "title",
+											"value": "Пост с невалидной картинкой",
+											"type": "text"
+										},
+										{
+											"key": "description",
+											"value": "Невалидный запрос",
+											"type": "text"
+										},
+										{
+											"key": "content",
+											"value": "Через постман",
+											"type": "text"
+										},
+										{
+											"key": "isDraft",
+											"value": "0",
+											"type": "text"
+										},
+										{
+											"key": "delayPublishTo",
+											"value": "2023-05-20",
+											"type": "text"
+										}
+									]
+								},
+								"url": {
+									"raw": "https://test-stand.gb.ru/gateway/posts",
+									"protocol": "https",
+									"host": [
+										"test-stand",
+										"gb",
+										"ru"
+									],
+									"path": [
+										"gateway",
+										"posts"
+									]
+								}
+							},
+							"status": "Bad Request",
+							"code": 400,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Date",
+									"value": "Sat, 13 May 2023 13:20:19 GMT"
+								},
+								{
+									"key": "Etag",
+									"value": "\"radzba\""
+								},
+								{
+									"key": "Content-Length",
+									"value": "151"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"error\": \"validation unsuccessful\",\n    \"code\": 400,\n    \"message\": [\n        {\n            \"message\": \"The file is too large. Allowed maximum size is 2 MB.\",\n            \"path\": \"image\",\n            \"code\": \"1\"\n        }\n    ]\n}"
+						}
+					]
+				},
+				{
+					"name": "Create empty post",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code is 400\", function () {",
+									"    pm.response.to.have.status(400);",
+									"});",
+									"",
+									"pm.test(\"Body contains error message\", function () {",
+									"    pm.expect(pm.response.text()).to.include(\"Невозможно создать пост, заполните поля\");",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "X-Auth-Token",
+								"value": "{{token}}",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "image",
+									"type": "file",
+									"src": []
+								},
+								{
+									"key": "title",
+									"value": "",
+									"type": "text"
+								},
+								{
+									"key": "description",
+									"value": "",
+									"type": "text"
+								},
+								{
+									"key": "content",
+									"value": "",
+									"type": "text"
+								},
+								{
+									"key": "isDraft",
+									"value": "",
+									"type": "text"
+								},
+								{
+									"key": "delayPublishTo",
+									"value": "",
+									"type": "text"
+								}
+							]
+						},
+						"url": {
+							"raw": "https://test-stand.gb.ru/gateway/posts",
+							"protocol": "https",
+							"host": [
+								"test-stand",
+								"gb",
+								"ru"
+							],
+							"path": [
+								"gateway",
+								"posts"
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "Create empty post",
+							"originalRequest": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "X-Auth-Token",
+										"value": "{{token}}",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "formdata",
+									"formdata": [
+										{
+											"key": "image",
+											"type": "file",
+											"src": []
+										},
+										{
+											"key": "title",
+											"value": "",
+											"type": "text"
+										},
+										{
+											"key": "description",
+											"value": "",
+											"type": "text"
+										},
+										{
+											"key": "content",
+											"value": "",
+											"type": "text"
+										},
+										{
+											"key": "isDraft",
+											"value": "",
+											"type": "text"
+										},
+										{
+											"key": "delayPublishTo",
+											"value": "",
+											"type": "text"
+										}
+									]
+								},
+								"url": {
+									"raw": "https://test-stand.gb.ru/gateway/posts",
+									"protocol": "https",
+									"host": [
+										"test-stand",
+										"gb",
+										"ru"
+									],
+									"path": [
+										"gateway",
+										"posts"
+									]
+								}
+							},
+							"status": "Internal Server Error",
+							"code": 500,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Date",
+									"value": "Sat, 13 May 2023 12:37:37 GMT"
+								},
+								{
+									"key": "Etag",
+									"value": "\"1ayvp0t\""
+								},
+								{
+									"key": "Content-Length",
+									"value": "94"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"error\": \"critical\",\n    \"code\": 500,\n    \"message\": \"Server error. Dont worry we already know about it.\"\n}"
+						}
+					]
+				},
+				{
+					"name": "Create post without token",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code is 403\", function () {",
+									"    pm.response.to.have.status(403);",
+									"});",
+									"",
+									"pm.test(\"Body contains error message\", function () {",
+									"    pm.expect(pm.response.text()).to.include(\"No API token provided or is not valid\");",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "X-Auth-Token",
+								"value": "38745",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "image",
+									"type": "file",
+									"src": "/Users/diana/Downloads/cat.jpeg"
+								},
+								{
+									"key": "title",
+									"value": "Валидный пост",
+									"type": "text"
+								},
+								{
+									"key": "description",
+									"value": "Валидный запрос",
+									"type": "text"
+								},
+								{
+									"key": "content",
+									"value": "Через постман",
+									"type": "text"
+								},
+								{
+									"key": "isDraft",
+									"value": "0",
+									"type": "text"
+								},
+								{
+									"key": "delayPublishTo",
+									"value": "2023-05-20",
+									"type": "text"
+								}
+							]
+						},
+						"url": {
+							"raw": "https://test-stand.gb.ru/gateway/posts",
+							"protocol": "https",
+							"host": [
+								"test-stand",
+								"gb",
+								"ru"
+							],
+							"path": [
+								"gateway",
+								"posts"
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "Create post without token",
+							"originalRequest": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "X-Auth-Token",
+										"value": "{{token}}",
+										"type": "text",
+										"disabled": true
+									}
+								],
+								"body": {
+									"mode": "formdata",
+									"formdata": [
+										{
+											"key": "image",
+											"type": "file",
+											"src": "/Users/diana/Downloads/cat.jpeg"
+										},
+										{
+											"key": "title",
+											"value": "Валидный пост",
+											"type": "text"
+										},
+										{
+											"key": "description",
+											"value": "Валидный запрос",
+											"type": "text"
+										},
+										{
+											"key": "content",
+											"value": "Через постман",
+											"type": "text"
+										},
+										{
+											"key": "isDraft",
+											"value": "0",
+											"type": "text"
+										},
+										{
+											"key": "delayPublishTo",
+											"value": "2023-05-20",
+											"type": "text"
+										}
+									]
+								},
+								"url": {
+									"raw": "https://test-stand.gb.ru/gateway/posts",
+									"protocol": "https",
+									"host": [
+										"test-stand",
+										"gb",
+										"ru"
+									],
+									"path": [
+										"gateway",
+										"posts"
+									]
+								}
+							},
+							"status": "Unauthorized",
+							"code": 401,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Date",
+									"value": "Sat, 13 May 2023 17:35:40 GMT"
+								},
+								{
+									"key": "Etag",
+									"value": "\"139jo4e\""
+								},
+								{
+									"key": "Content-Length",
+									"value": "93"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"error\": \"Undefined error occurred\",\n    \"code\": 401,\n    \"message\": \"Auth header required X-Auth-Token\"\n}"
+						}
+					]
+				}
+			]
+		},
+		{
+			"name": "Auth",
+			"item": [
+				{
+					"name": "Auth",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code is 200\", function () {",
+									"    pm.response.to.have.status(200);",
+									"});",
+									"",
+									"pm.test(\"Set token & userId variables\", function () {",
+									"    var jsonData = pm.response.json();",
+									"    pm.collectionVariables.set(\"token\", jsonData.token);",
+									"    pm.collectionVariables.set(\"userId\", jsonData.id);",
+									"});",
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "username",
+									"value": "emptyuser",
+									"type": "text"
+								},
+								{
+									"key": "password",
+									"value": "f564943916",
+									"type": "text"
+								}
+							]
+						},
+						"url": {
+							"raw": "https://test-stand.gb.ru/gateway/login",
+							"protocol": "https",
+							"host": [
+								"test-stand",
+								"gb",
+								"ru"
+							],
+							"path": [
+								"gateway",
+								"login"
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "Dummy auth",
+							"originalRequest": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "formdata",
+									"formdata": [
+										{
+											"key": "username",
+											"value": "newuser",
+											"type": "text"
+										},
+										{
+											"key": "password",
+											"value": "0354d89c28",
+											"type": "text"
+										}
+									]
+								},
+								"url": {
+									"raw": "https://test-stand.gb.ru/gateway/login",
+									"protocol": "https",
+									"host": [
+										"test-stand",
+										"gb",
+										"ru"
+									],
+									"path": [
+										"gateway",
+										"login"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "plain",
+							"header": [
+								{
+									"key": "Content-Type",
+									"value": "text/plain;charset=UTF-8"
+								},
+								{
+									"key": "Date",
+									"value": "Sat, 13 May 2023 12:24:45 GMT"
+								},
+								{
+									"key": "Etag",
+									"value": "\"var46l\""
+								},
+								{
+									"key": "Set-Cookie",
+									"value": "session_id=%7B%22id%22%3A10400%2C%22username%22%3A%22newuser%22%2C%22token%22%3A%22c050f22d83a9f3449a5dcabb7ebf9467%22%2C%22roles%22%3A%5B%22R_DUMMY%22%2C%22R_USER%22%2C%22P_SUPPORT_MESSAGE_L%22%2C%22P_POST_L%22%2C%22P_POST_C%22%2C%22P_POST_R%22%2C%22P_POST_U%22%2C%22P_POST_D%22%2C%22P_USER_R%22%2C%22P_USER_U%22%2C%22P_USER_LOGOUT%22%2C%22P_USER_LOGIN%22%5D%7D; Max-Age=604800; Path=/; HttpOnly; SameSite=Strict"
+								},
+								{
+									"key": "Content-Length",
+									"value": "235"
+								}
+							],
+							"cookie": [],
+							"body": "{\"id\":10400,\"username\":\"newuser\",\"token\":\"c050f22d83a9f3449a5dcabb7ebf9467\",\"roles\":[\"R_DUMMY\",\"R_USER\",\"P_SUPPORT_MESSAGE_L\",\"P_POST_L\",\"P_POST_C\",\"P_POST_R\",\"P_POST_U\",\"P_POST_D\",\"P_USER_R\",\"P_USER_U\",\"P_USER_LOGOUT\",\"P_USER_LOGIN\"]}"
+						}
+					]
+				}
+			]
+		},
+		{
+			"name": "Get user",
+			"item": [
+				{
+					"name": "Get user info",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code is 200\", function () {",
+									"    pm.response.to.have.status(200);",
+									"});",
+									"",
+									"var schema = {",
+									"    \"type\": \"object\",",
+									"    \"properties\": {",
+									"        \"id\": { \"type\": \"number\" },",
+									"        \"firstName\": { \"type\": \"string\" },",
+									"        \"lastName\": { \"type\": \"string\" },",
+									"        \"username\": { \"type\": \"string\" },",
+									"        \"phone\": { \"type\": \"string\" },",
+									"        \"status\": { \"type\": \"string\" },",
+									"        \"sex\": { \"type\": \"string\" },",
+									"        \"birthDate\": { \"type\": \"string\" },",
+									"        \"avatar\": {",
+									"            \"type\": \"object\",",
+									"            \"properties\": {",
+									"                \"id\": { \"type\": [\"number\", \"null\"] },",
+									"                \"cdnUrl\": { \"type\": \"string\" }",
+									"            }",
+									"        }",
+									"    }",
+									"}",
+									"",
+									"pm.test(\"Validate schema\", () => {",
+									"    pm.response.to.have.jsonSchema(schema);",
+									"});",
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "X-Auth-Token",
+								"value": "{{token}}",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "https://test-stand.gb.ru/api/users/profile/{{userId}}",
+							"protocol": "https",
+							"host": [
+								"test-stand",
+								"gb",
+								"ru"
+							],
+							"path": [
+								"api",
+								"users",
+								"profile",
+								"{{userId}}"
+							],
+							"query": [
+								{
+									"key": "",
+									"value": null,
+									"disabled": true
+								}
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "Get user info",
+							"originalRequest": {
+								"method": "GET",
+								"header": [
+									{
+										"key": "X-Auth-Token",
+										"value": "{{token}}",
+										"type": "text"
+									}
+								],
+								"url": {
+									"raw": "https://test-stand.gb.ru/api/users/profile/{{userId}}",
+									"protocol": "https",
+									"host": [
+										"test-stand",
+										"gb",
+										"ru"
+									],
+									"path": [
+										"api",
+										"users",
+										"profile",
+										"{{userId}}"
+									],
+									"query": [
+										{
+											"key": "",
+											"value": null,
+											"disabled": true
+										}
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Allow",
+									"value": "GET, PUT, POST"
+								},
+								{
+									"key": "Cache-Control",
+									"value": "max-age=0, must-revalidate, private"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json"
+								},
+								{
+									"key": "Date",
+									"value": "Tue, 16 May 2023 19:51:16 GMT"
+								},
+								{
+									"key": "Expires",
+									"value": "Tue, 16 May 2023 19:51:16 GMT"
+								},
+								{
+									"key": "Server",
+									"value": "nginx/1.23.1"
+								},
+								{
+									"key": "Set-Cookie",
+									"value": "PHPSESSID=0f2p6tuoc3qg1sded24hafcqtg; path=/; httponly; samesite=lax"
+								},
+								{
+									"key": "X-Powered-By",
+									"value": "PHP/8.1.10"
+								},
+								{
+									"key": "Content-Length",
+									"value": "456"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"id\": 10400,\n    \"firstName\": \"новый\",\n    \"lastName\": \"пользователь\",\n    \"username\": \"newuser\",\n    \"phone\": \"89763726343\",\n    \"status\": \"active\",\n    \"sex\": \"male\",\n    \"birthDate\": \"1986-05-20T00:00:00+00:00\",\n    \"avatar\": {\n        \"id\": 17791,\n        \"cdnUrl\": \"http://test-stand.gb.ru/files/public/image/4996ca8285f7e3528775c211cadec85e.png\"\n    },\n    \"updatedAt\": \"2023-05-16T18:59:38+00:00\",\n    \"createdAt\": \"2023-05-11T17:52:53+00:00\"\n}"
+						}
+					]
+				},
+				{
+					"name": "Get user by invalid token",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code is 400\", function () {",
+									"    pm.response.to.have.status(400);",
+									"});",
+									"",
+									"pm.test(\"Check error in the response body\", function () {",
+									"    var jsonData = pm.response.json();",
+									"    pm.expect(jsonData.error).to.eql(\"critical\");",
+									"});",
+									"",
+									"pm.test(\"Check message in the response body\", function () {",
+									"    var jsonData = pm.response.json();",
+									"    pm.expect(jsonData.message).to.eql(\"Вы запрашиваете чужого пользователя\")",
+									"});",
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "X-Auth-Token",
+								"value": "1ceb0a8e6eda3bad5c96434db1b742b1",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "https://test-stand.gb.ru/api/users/profile/{{userId}}",
+							"protocol": "https",
+							"host": [
+								"test-stand",
+								"gb",
+								"ru"
+							],
+							"path": [
+								"api",
+								"users",
+								"profile",
+								"{{userId}}"
+							],
+							"query": [
+								{
+									"key": "",
+									"value": null,
+									"disabled": true
+								}
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "Get user info",
+							"originalRequest": {
+								"method": "GET",
+								"header": [
+									{
+										"key": "X-Auth-Token",
+										"value": "{{token}}",
+										"type": "text"
+									}
+								],
+								"url": {
+									"raw": "https://test-stand.gb.ru/api/users/profile/{{userId}}",
+									"protocol": "https",
+									"host": [
+										"test-stand",
+										"gb",
+										"ru"
+									],
+									"path": [
+										"api",
+										"users",
+										"profile",
+										"{{userId}}"
+									],
+									"query": [
+										{
+											"key": "",
+											"value": null,
+											"disabled": true
+										}
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Allow",
+									"value": "GET, PUT, POST"
+								},
+								{
+									"key": "Cache-Control",
+									"value": "max-age=0, must-revalidate, private"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json"
+								},
+								{
+									"key": "Date",
+									"value": "Tue, 16 May 2023 19:51:16 GMT"
+								},
+								{
+									"key": "Expires",
+									"value": "Tue, 16 May 2023 19:51:16 GMT"
+								},
+								{
+									"key": "Server",
+									"value": "nginx/1.23.1"
+								},
+								{
+									"key": "Set-Cookie",
+									"value": "PHPSESSID=0f2p6tuoc3qg1sded24hafcqtg; path=/; httponly; samesite=lax"
+								},
+								{
+									"key": "X-Powered-By",
+									"value": "PHP/8.1.10"
+								},
+								{
+									"key": "Content-Length",
+									"value": "456"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"id\": 10400,\n    \"firstName\": \"новый\",\n    \"lastName\": \"пользователь\",\n    \"username\": \"newuser\",\n    \"phone\": \"89763726343\",\n    \"status\": \"active\",\n    \"sex\": \"male\",\n    \"birthDate\": \"1986-05-20T00:00:00+00:00\",\n    \"avatar\": {\n        \"id\": 17791,\n        \"cdnUrl\": \"http://test-stand.gb.ru/files/public/image/4996ca8285f7e3528775c211cadec85e.png\"\n    },\n    \"updatedAt\": \"2023-05-16T18:59:38+00:00\",\n    \"createdAt\": \"2023-05-11T17:52:53+00:00\"\n}"
+						},
+						{
+							"name": "Get user by invalid token",
+							"originalRequest": {
+								"method": "GET",
+								"header": [
+									{
+										"key": "X-Auth-Token",
+										"value": "1ceb0a8e6eda3bad5c96434db1b742b1",
+										"type": "text"
+									}
+								],
+								"url": {
+									"raw": "https://test-stand.gb.ru/api/users/profile/{{userId}}",
+									"protocol": "https",
+									"host": [
+										"test-stand",
+										"gb",
+										"ru"
+									],
+									"path": [
+										"api",
+										"users",
+										"profile",
+										"{{userId}}"
+									],
+									"query": [
+										{
+											"key": "",
+											"value": null,
+											"disabled": true
+										}
+									]
+								}
+							},
+							"status": "Not Found",
+							"code": 404,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Allow",
+									"value": "GET, PUT, POST"
+								},
+								{
+									"key": "Cache-Control",
+									"value": "max-age=0, must-revalidate, private"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/problem+json"
+								},
+								{
+									"key": "Date",
+									"value": "Tue, 16 May 2023 19:56:36 GMT"
+								},
+								{
+									"key": "Expires",
+									"value": "Tue, 16 May 2023 19:56:36 GMT"
+								},
+								{
+									"key": "Server",
+									"value": "nginx/1.23.1"
+								},
+								{
+									"key": "Set-Cookie",
+									"value": "PHPSESSID=trt4pascflcft56iqh71i6tui7; path=/; httponly; samesite=lax"
+								},
+								{
+									"key": "X-Powered-By",
+									"value": "PHP/8.1.10"
+								},
+								{
+									"key": "Content-Length",
+									"value": "69"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"error\": \"critical\",\n    \"code\": 404,\n    \"message\": \"User is not my own: 10400\"\n}"
+						}
+					]
+				},
+				{
+					"name": "Update user",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code is 200\", function () {",
+									"    pm.response.to.have.status(200);",
+									"});",
+									"",
+									"pm.test(\"Check id in the response\", function () {",
+									"    var jsonData = pm.response.json();",
+									"    pm.expect(jsonData.item.id).to.eql(pm.collectionVariables.get(\"userId\"));",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "PUT",
+						"header": [
+							{
+								"key": "X-Auth-Token",
+								"value": "{{token}}",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "image",
+									"type": "file",
+									"src": "/Users/diana/Downloads/cat.jpeg"
+								},
+								{
+									"key": "firstName",
+									"value": "Diana",
+									"type": "text"
+								},
+								{
+									"key": "lastName",
+									"value": "Brown",
+									"type": "text"
+								},
+								{
+									"key": "username",
+									"value": "diana{{$randomAdjective}}",
+									"type": "text"
+								},
+								{
+									"key": "phone",
+									"value": "89875431245",
+									"type": "text"
+								},
+								{
+									"key": "sex",
+									"value": "female",
+									"type": "text"
+								},
+								{
+									"key": "birthDate",
+									"value": "1998-04-26T00:00:00+00:00",
+									"type": "text"
+								}
+							]
+						},
+						"url": {
+							"raw": "https://test-stand.gb.ru/gateway/users/profile/{{userId}}",
+							"protocol": "https",
+							"host": [
+								"test-stand",
+								"gb",
+								"ru"
+							],
+							"path": [
+								"gateway",
+								"users",
+								"profile",
+								"{{userId}}"
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "Update user",
+							"originalRequest": {
+								"method": "PUT",
+								"header": [
+									{
+										"key": "X-Auth-Token",
+										"value": "{{token}}",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "formdata",
+									"formdata": [
+										{
+											"key": "image",
+											"type": "file",
+											"src": "/Users/diana/Downloads/cat.jpeg"
+										},
+										{
+											"key": "firstName",
+											"value": "Diana",
+											"type": "text"
+										},
+										{
+											"key": "lastName",
+											"value": "Brown",
+											"type": "text"
+										},
+										{
+											"key": "username",
+											"value": "diankaBrown",
+											"type": "text"
+										},
+										{
+											"key": "phone",
+											"value": "89875431245",
+											"type": "text"
+										},
+										{
+											"key": "sex",
+											"value": "female",
+											"type": "text"
+										},
+										{
+											"key": "birthDate",
+											"value": "1998-04-26T00:00:00+00:00",
+											"type": "text"
+										}
+									]
+								},
+								"url": {
+									"raw": "https://test-stand.gb.ru/gateway/users/profile/{{userId}}",
+									"protocol": "https",
+									"host": [
+										"test-stand",
+										"gb",
+										"ru"
+									],
+									"path": [
+										"gateway",
+										"users",
+										"profile",
+										"{{userId}}"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Date",
+									"value": "Tue, 16 May 2023 20:05:44 GMT"
+								},
+								{
+									"key": "Etag",
+									"value": "\"1hmesgz\""
+								},
+								{
+									"key": "Content-Length",
+									"value": "373"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"item\": {\n        \"id\": 10400,\n        \"firstName\": \"Diana\",\n        \"lastName\": \"Brown\",\n        \"username\": \"diankaBrown\",\n        \"phone\": \"89875431245\",\n        \"status\": \"active\",\n        \"sex\": \"female\",\n        \"birthDate\": \"1998-04-26T00:00:00+00:00\",\n        \"avatar\": {\n            \"id\": 17872,\n            \"cdnUrl\": \"http://test-stand.gb.ru/files/public/image/f7aea90ad4b9cb6a13e8aa3ce8c32e5b.jpg\"\n        },\n        \"updatedAt\": \"2023-05-16T20:05:44+00:00\",\n        \"createdAt\": \"2023-05-11T17:52:53+00:00\"\n    }\n}"
+						}
+					]
+				},
+				{
+					"name": "Update user invalid phone",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code is 400\", function () {",
+									"    pm.response.to.have.status(400);",
+									"});",
+									"",
+									"var schema = {",
+									"    \"type\": \"object\",",
+									"    \"properties\": {",
+									"        \"error\": { \"type\": \"string\" },",
+									"        \"code\": { \"type\": \"number\" },",
+									"        \"message\": { \"type\": \"array\" }",
+									"    }",
+									"}",
+									"",
+									"pm.test(\"Validate schema\", () => {",
+									"    pm.response.to.have.jsonSchema(schema);",
+									"});",
+									"",
+									"",
+									"pm.test(\"Check error in the response\", function () {",
+									"    var jsonData = pm.response.json();",
+									"    pm.expect(jsonData.error).to.eql(\"Неуспешная попытка создания аккаунта\");",
+									"});",
+									"",
+									"pm.test(\"Check path in the response\", function () {",
+									"    var jsonData = pm.response.json();",
+									"    pm.expect(jsonData.message[0].path).to.eql(\"phone\");",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "PUT",
+						"header": [
+							{
+								"key": "X-Auth-Token",
+								"value": "{{token}}",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "image",
+									"type": "file",
+									"src": "/Users/diana/Downloads/cat.jpeg"
+								},
+								{
+									"key": "firstName",
+									"value": "Diana",
+									"type": "text"
+								},
+								{
+									"key": "lastName",
+									"value": "Brown",
+									"type": "text"
+								},
+								{
+									"key": "username",
+									"value": "dianka{{$randomInt}}",
+									"type": "text"
+								},
+								{
+									"key": "phone",
+									"value": "8987543",
+									"type": "text"
+								},
+								{
+									"key": "sex",
+									"value": "female",
+									"type": "text"
+								},
+								{
+									"key": "birthDate",
+									"value": "1998-04-26T00:00:00+00:00",
+									"type": "text"
+								}
+							]
+						},
+						"url": {
+							"raw": "https://test-stand.gb.ru/gateway/users/profile/{{userId}}",
+							"protocol": "https",
+							"host": [
+								"test-stand",
+								"gb",
+								"ru"
+							],
+							"path": [
+								"gateway",
+								"users",
+								"profile",
+								"{{userId}}"
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "Update user invalid phone",
+							"originalRequest": {
+								"method": "PUT",
+								"header": [
+									{
+										"key": "X-Auth-Token",
+										"value": "{{token}}",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "formdata",
+									"formdata": [
+										{
+											"key": "image",
+											"type": "file",
+											"src": "/Users/diana/Downloads/cat.jpeg"
+										},
+										{
+											"key": "firstName",
+											"value": "Diana",
+											"type": "text"
+										},
+										{
+											"key": "lastName",
+											"value": "Brown",
+											"type": "text"
+										},
+										{
+											"key": "username",
+											"value": "diankaBrown",
+											"type": "text"
+										},
+										{
+											"key": "phone",
+											"value": "8987543",
+											"type": "text"
+										},
+										{
+											"key": "sex",
+											"value": "female",
+											"type": "text"
+										},
+										{
+											"key": "birthDate",
+											"value": "1998-04-26T00:00:00+00:00",
+											"type": "text"
+										}
+									]
+								},
+								"url": {
+									"raw": "https://test-stand.gb.ru/gateway/users/profile/{{userId}}",
+									"protocol": "https",
+									"host": [
+										"test-stand",
+										"gb",
+										"ru"
+									],
+									"path": [
+										"gateway",
+										"users",
+										"profile",
+										"{{userId}}"
+									]
+								}
+							},
+							"status": "Bad Request",
+							"code": 400,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Date",
+									"value": "Tue, 16 May 2023 20:10:49 GMT"
+								},
+								{
+									"key": "Etag",
+									"value": "\"62x5e5\""
+								},
+								{
+									"key": "Content-Length",
+									"value": "158"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"error\": \"validation unsuccessful\",\n    \"code\": 400,\n    \"message\": [\n        {\n            \"message\": \"This value is not valid.\",\n            \"path\": \"phone\",\n            \"code\": \"de1e3db3-5ed4-4941-aae4-59f3667cc3a3\"\n        }\n    ]\n}"
+						}
+					]
+				},
+				{
+					"name": "Update user not unique login",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code is 400\", function () {",
+									"    pm.response.to.have.status(400);",
+									"});",
+									"",
+									"var schema = {",
+									"    \"type\": \"object\",",
+									"    \"properties\": {",
+									"        \"error\": { \"type\": \"string\" },",
+									"        \"code\": { \"type\": \"number\" },",
+									"        \"message\": { \"type\": \"array\" }",
+									"    }",
+									"}",
+									"",
+									"pm.test(\"Validate schema\", () => {",
+									"    pm.response.to.have.jsonSchema(schema);",
+									"});",
+									"",
+									"",
+									"pm.test(\"Check error in the response\", function () {",
+									"    var jsonData = pm.response.json();",
+									"    pm.expect(jsonData.error).to.eql(\"Неуспешная попытка создания аккаунта\");",
+									"});",
+									"",
+									"pm.test(\"Check path in the response\", function () {",
+									"    var jsonData = pm.response.json();",
+									"    pm.expect(jsonData.message[0].path).to.eql(\"username\");",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "PUT",
+						"header": [
+							{
+								"key": "X-Auth-Token",
+								"value": "{{token}}",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "image",
+									"type": "file",
+									"src": "/Users/diana/Downloads/cat.jpeg"
+								},
+								{
+									"key": "firstName",
+									"value": "Diana",
+									"type": "text"
+								},
+								{
+									"key": "lastName",
+									"value": "Brown",
+									"type": "text"
+								},
+								{
+									"key": "username",
+									"value": "mary2003",
+									"type": "text"
+								},
+								{
+									"key": "phone",
+									"value": "89875431245",
+									"type": "text"
+								},
+								{
+									"key": "sex",
+									"value": "female",
+									"type": "text"
+								},
+								{
+									"key": "birthDate",
+									"value": "1998-04-26T00:00:00+00:00",
+									"type": "text"
+								}
+							]
+						},
+						"url": {
+							"raw": "https://test-stand.gb.ru/gateway/users/profile/{{userId}}",
+							"protocol": "https",
+							"host": [
+								"test-stand",
+								"gb",
+								"ru"
+							],
+							"path": [
+								"gateway",
+								"users",
+								"profile",
+								"{{userId}}"
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "Update user not unique login",
+							"originalRequest": {
+								"method": "PUT",
+								"header": [
+									{
+										"key": "X-Auth-Token",
+										"value": "{{token}}",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "formdata",
+									"formdata": [
+										{
+											"key": "image",
+											"type": "file",
+											"src": "/Users/diana/Downloads/cat.jpeg"
+										},
+										{
+											"key": "firstName",
+											"value": "Diana",
+											"type": "text"
+										},
+										{
+											"key": "lastName",
+											"value": "Brown",
+											"type": "text"
+										},
+										{
+											"key": "username",
+											"value": "mary2003",
+											"type": "text"
+										},
+										{
+											"key": "phone",
+											"value": "89875431245",
+											"type": "text"
+										},
+										{
+											"key": "sex",
+											"value": "female",
+											"type": "text"
+										},
+										{
+											"key": "birthDate",
+											"value": "1998-04-26T00:00:00+00:00",
+											"type": "text"
+										}
+									]
+								},
+								"url": {
+									"raw": "https://test-stand.gb.ru/gateway/users/profile/{{userId}}",
+									"protocol": "https",
+									"host": [
+										"test-stand",
+										"gb",
+										"ru"
+									],
+									"path": [
+										"gateway",
+										"users",
+										"profile",
+										"{{userId}}"
+									]
+								}
+							},
+							"status": "Bad Request",
+							"code": 400,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Date",
+									"value": "Tue, 16 May 2023 20:36:39 GMT"
+								},
+								{
+									"key": "Etag",
+									"value": "\"rfpg97\""
+								},
+								{
+									"key": "Content-Length",
+									"value": "181"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"error\": \"validation unsuccessful\",\n    \"code\": 400,\n    \"message\": [\n        {\n            \"message\": \"Provided username \\\"mary2003\\\" is not unique\",\n            \"path\": \"username\",\n            \"code\": \"883468fb-49b2-4867-a3d3-a187dd789966\"\n        }\n    ]\n}"
+						}
+					]
+				},
+				{
+					"name": "Update user empty firstName",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code is 400\", function () {",
+									"    pm.response.to.have.status(400);",
+									"});",
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "PUT",
+						"header": [
+							{
+								"key": "X-Auth-Token",
+								"value": "{{token}}",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "image",
+									"type": "file",
+									"src": "/Users/diana/Downloads/cat.jpeg"
+								},
+								{
+									"key": "firstName",
+									"value": "",
+									"type": "text"
+								},
+								{
+									"key": "lastName",
+									"value": "Brown",
+									"type": "text"
+								},
+								{
+									"key": "username",
+									"value": "diankaBrown",
+									"type": "text"
+								},
+								{
+									"key": "phone",
+									"value": "89875431245",
+									"type": "text"
+								},
+								{
+									"key": "sex",
+									"value": "female",
+									"type": "text"
+								},
+								{
+									"key": "birthDate",
+									"value": "1998-04-26T00:00:00+00:00",
+									"type": "text"
+								}
+							]
+						},
+						"url": {
+							"raw": "https://test-stand.gb.ru/gateway/users/profile/{{userId}}",
+							"protocol": "https",
+							"host": [
+								"test-stand",
+								"gb",
+								"ru"
+							],
+							"path": [
+								"gateway",
+								"users",
+								"profile",
+								"{{userId}}"
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "Update user empty field",
+							"originalRequest": {
+								"method": "PUT",
+								"header": [
+									{
+										"key": "X-Auth-Token",
+										"value": "{{token}}",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "formdata",
+									"formdata": [
+										{
+											"key": "image",
+											"type": "file",
+											"src": "/Users/diana/Downloads/cat.jpeg"
+										},
+										{
+											"key": "firstName",
+											"value": "",
+											"type": "text"
+										},
+										{
+											"key": "lastName",
+											"value": "Brown",
+											"type": "text"
+										},
+										{
+											"key": "username",
+											"value": "diankaBrown",
+											"type": "text"
+										},
+										{
+											"key": "phone",
+											"value": "89875431245",
+											"type": "text"
+										},
+										{
+											"key": "sex",
+											"value": "female",
+											"type": "text"
+										},
+										{
+											"key": "birthDate",
+											"value": "1998-04-26T00:00:00+00:00",
+											"type": "text"
+										}
+									]
+								},
+								"url": {
+									"raw": "https://test-stand.gb.ru/gateway/users/profile/{{userId}}",
+									"protocol": "https",
+									"host": [
+										"test-stand",
+										"gb",
+										"ru"
+									],
+									"path": [
+										"gateway",
+										"users",
+										"profile",
+										"{{userId}}"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Date",
+									"value": "Tue, 16 May 2023 20:14:59 GMT"
+								},
+								{
+									"key": "Etag",
+									"value": "\"15kay8o\""
+								},
+								{
+									"key": "Content-Length",
+									"value": "288"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"item\": {\n        \"id\": 10400,\n        \"firstName\": \"\",\n        \"lastName\": \"Brown\",\n        \"username\": \"diankaBrown\",\n        \"phone\": \"89875431245\",\n        \"status\": \"active\",\n        \"sex\": \"female\",\n        \"birthDate\": \"1998-04-26T00:00:00+00:00\",\n        \"avatar\": {\n            \"id\": null,\n            \"cdnUrl\": \"\"\n        },\n        \"updatedAt\": \"2023-05-16T20:14:59+00:00\",\n        \"createdAt\": \"2023-05-11T17:52:53+00:00\"\n    }\n}"
+						}
+					]
+				},
+				{
+					"name": "Update user empty fields",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code is 400\", function () {",
+									"    pm.response.to.have.status(400);",
+									"});",
+									"",
+									"var schema = {",
+									"    \"type\": \"object\",",
+									"    \"properties\": {",
+									"        \"error\": { \"type\": \"string\" },",
+									"        \"code\": { \"type\": \"number\" },",
+									"        \"message\": { \"type\": \"array\" }",
+									"    }",
+									"}",
+									"",
+									"pm.test(\"Validate schema\", () => {",
+									"    pm.response.to.have.jsonSchema(schema);",
+									"});",
+									"",
+									"",
+									"pm.test(\"Check error in the response\", function () {",
+									"    var jsonData = pm.response.json();",
+									"    pm.expect(jsonData.error).to.eql(\"Неуспешная попытка создания аккаунта\");",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "PUT",
+						"header": [
+							{
+								"key": "X-Auth-Token",
+								"value": "{{token}}",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "image",
+									"type": "file",
+									"src": "/Users/diana/Downloads/cat.jpeg",
+									"disabled": true
+								},
+								{
+									"key": "firstName",
+									"value": "",
+									"type": "text"
+								},
+								{
+									"key": "lastName",
+									"value": "",
+									"type": "text"
+								},
+								{
+									"key": "username",
+									"value": "",
+									"type": "text"
+								},
+								{
+									"key": "phone",
+									"value": "",
+									"type": "text"
+								},
+								{
+									"key": "sex",
+									"value": "",
+									"type": "text"
+								},
+								{
+									"key": "birthDate",
+									"value": "",
+									"type": "text"
+								}
+							]
+						},
+						"url": {
+							"raw": "https://test-stand.gb.ru/gateway/users/profile/{{userId}}",
+							"protocol": "https",
+							"host": [
+								"test-stand",
+								"gb",
+								"ru"
+							],
+							"path": [
+								"gateway",
+								"users",
+								"profile",
+								"{{userId}}"
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "Update user empty fields",
+							"originalRequest": {
+								"method": "PUT",
+								"header": [
+									{
+										"key": "X-Auth-Token",
+										"value": "{{token}}",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "formdata",
+									"formdata": [
+										{
+											"key": "image",
+											"type": "file",
+											"src": "/Users/diana/Downloads/cat.jpeg",
+											"disabled": true
+										},
+										{
+											"key": "firstName",
+											"value": "",
+											"type": "text"
+										},
+										{
+											"key": "lastName",
+											"value": "",
+											"type": "text"
+										},
+										{
+											"key": "username",
+											"value": "",
+											"type": "text"
+										},
+										{
+											"key": "phone",
+											"value": "",
+											"type": "text"
+										},
+										{
+											"key": "sex",
+											"value": "",
+											"type": "text"
+										},
+										{
+											"key": "birthDate",
+											"value": "",
+											"type": "text"
+										}
+									]
+								},
+								"url": {
+									"raw": "https://test-stand.gb.ru/gateway/users/profile/{{userId}}",
+									"protocol": "https",
+									"host": [
+										"test-stand",
+										"gb",
+										"ru"
+									],
+									"path": [
+										"gateway",
+										"users",
+										"profile",
+										"{{userId}}"
+									]
+								}
+							},
+							"status": "Bad Request",
+							"code": 400,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Date",
+									"value": "Tue, 16 May 2023 20:37:35 GMT"
+								},
+								{
+									"key": "Etag",
+									"value": "\"1qbvqpo\""
+								},
+								{
+									"key": "Content-Length",
+									"value": "168"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"error\": \"validation unsuccessful\",\n    \"code\": 400,\n    \"message\": [\n        {\n            \"message\": \"This value should not be blank.\",\n            \"path\": \"username\",\n            \"code\": \"c1051bb4-d103-4f74-8988-acbcafc7fdc3\"\n        }\n    ]\n}"
+						}
+					]
+				}
+			]
+		}
+	],
+	"variable": [
+		{
+			"key": "token",
+			"value": ""
+		},
+		{
+			"key": "userId",
+			"value": ""
+		}
+	]
+}
